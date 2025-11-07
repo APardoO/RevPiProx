@@ -1,0 +1,14 @@
+# Nombre del servidor
+name: RevPiProx
+
+# Version actual del proyecto (dejar por defecto)
+version: 1.0
+
+# Puerto en el que se lanzará el servidor
+port: 80
+
+# Protocolo por el cual se entablarán las conexiones
+protocol: tcp
+
+# Condpoints configurados para poder hacer saolución por puerto
+endpoints: ./endpoints.json

@@ -11,4 +11,4 @@ port: 80
 protocol: tcp
 
 # Condpoints configurados para poder hacer saolución por puerto
-endpoints: ./endpoints.json
+endpoints: /etc/rpp/endpoints.json

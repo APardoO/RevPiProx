@@ -6,7 +6,7 @@ Wants=network-online.target
 
 [Service]
 # Ruta al ejecutable
-ExecStart=/usr/local/bin/rpp
+ExecStart=/usr/local/bin/rpp /etc/rpp/config.yml
 
 # Directorio de trabajo (opcional)
 WorkingDirectory=/etc/rpp
@@ -14,6 +14,9 @@ WorkingDirectory=/etc/rpp
 # Usuario del sistema
 User=rpp
 Group=rpp
+
+# Permite bindear puertos <1024 sin root
+AmbientCapabilities=CAP_NET_BIND_SERVICE
 
 # Reinicio en caso de que falle
 Restart=on-failure

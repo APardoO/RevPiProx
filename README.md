@@ -23,12 +23,18 @@ Dos servicios HTTP que por defecto se lanzarían en el puerto 80, pero en la má
 
 ## Instanación:
 
+> [!IMPORTANT]
+> Ejecutar como el usuario `root`
+
 ```bash
-sudo make install
+make install
 ```
 
 
 ## Desinstalación:
+
+> [!IMPORTANT]
+> Ejecutar como el usuario `root`
 
 ```bash
 sudo make uninstall

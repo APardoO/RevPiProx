@@ -1,0 +1,40 @@
+[Unit]
+Description=RevPiProx Service
+After=network-online.target nss-lookup.target
+Wants=network-online.target
+
+
+[Service]
+# Ruta al ejecutable
+ExecStart=/usr/local/bin/rpp
+
+# Directorio de trabajo (opcional)
+WorkingDirectory=/etc/rpp
+
+# Usuario del sistema
+User=rpp
+Group=rpp
+
+# Reinicio en caso de que falle
+Restart=on-failure
+RestartSec=5
+
+# Evitar escalada de privilegios
+NoNewPrivileges=true
+
+# Le damos un propio directorio /tmp
+PrivateTmp=true
+
+# Montamos /usr y /etc de solo lectura
+ProtectSystem=full
+
+# Bloqueamos el acceso a /home
+ProtectHome=true
+
+# Logs guardados con journalctl
+StandardOutput=journal
+StandardError=journal
+
+
+[Install]
+WantedBy=multi-user.target

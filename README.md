@@ -14,10 +14,13 @@ Ejemplo:
 - **example2.local** direcciona a `192.168.1.123:80`
 Dos servicios HTTP que por defecto se lanzarían en el puerto 80, pero en la máquina están instalados en los puertos **5050** y **5051**. Este proxy puede hacer esa redirección de puertos.
 
+Se pueden especificar archivos docker para pdoer lanzar contenedores con servicios web. En el caso de los servicios lanzados sobre docker, habrá un timeout en el que, si el servicio ha estado inactivo por el timeout establecido en su configuración, el contenedor se eliminará liberando recursos.
+
 
 ## Dependencias:
 
 - Go
+- Docker
 - Makefile
 
 
@@ -70,12 +73,16 @@ Archivo `endpoints.json`:
 ```json
 [
 	{
-		"endpoint": "ssh.local",
+		"endpoint": "example.lan",
+		"docker": {
+			"type": "compose",
+			"path": "./docker-compose.yml"
+		},
 		"target": {
-			"protocol": "ssh",
-			"ip":       "192.168.1.123",
-			"port":     5050,
-			"standar":  22
+			"protocol": "http",
+			"ip":       "127.0.0.1",
+			"port":     8080,
+			"standard": 80
 		}
 	},
 	{

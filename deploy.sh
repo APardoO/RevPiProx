@@ -32,14 +32,6 @@ function helpPannel() {
 
 # Compilación
 function compile() {
-	if [ ! -f go.mod ]; then
-		echo -e "${blueColour}[INIT]${endColour} ${grayColour}Creando el modulo Go:${endColour} ${purpleColour}$tool_name${endColour}"
-		go mod init "$tool_name"
-	fi
-
-	echo -e "${blueColour}[TIDY]${endColour} ${grayColour}Resolviendo dependencias...${endColour}"
-	go mod tidy
-
 	echo -e "${blueColour}[BUILD]${endColour} ${grayColour}Compilando${endColour} ${purpleColour}$program_name${endColour}${grayColour}...${endColour}"
 	go build -o ./"$program_name" ./*.go
 

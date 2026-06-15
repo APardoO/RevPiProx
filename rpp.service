@@ -38,6 +38,9 @@ ProtectHome=true
 StandardOutput=journal
 StandardError=journal
 
+# Configuración del path para el servicio
+Environment=HOME=/var/lib/rpp
+
 
 [Install]
 WantedBy=multi-user.target

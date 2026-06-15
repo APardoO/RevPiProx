@@ -57,6 +57,7 @@ function install() {
 
 	# Creación de los directorios apropiados
 	mkdir -p /etc/"$program_name"
+	mkdir -p /var/lib/"$program_name"
 
 	# Copia de los archivos de configuración (/etc/rpp) y de servicio (/etc/systemd/system) más el ejecutable (/usr/local/bin)
 	cp -v ./config.yml /etc/"$program_name"/ || { tput cnorm; exit 1; }
@@ -79,6 +80,8 @@ function install() {
 	chown -R "$program_name:$program_name" /etc/"$program_name"
 	chmod 755 /etc/"$program_name"
 	
+	chown "$program_name:$program_name" /var/lib/"$program_name"
+
 	# Recargamos el demonio de systemd
 	systemctl daemon-reload
 

@@ -104,7 +104,7 @@ function install() {
 	systemctl enable "$program_name.service"
 
 	echo -e "${greenColour}[OK]${endColour} ${grayColour}Instalación completada!${endColour}"
-	systemctl --no-pager status "$program_name.service" --lines=3
+	systemctl --no-pager status "$program_name.service" --lines=3 || true
 }
 
 # Desinstalación

@@ -46,8 +46,6 @@ function compile() {
 
 # Instalación
 function install() {
-	global q_flag
-
 	# Comprobación del UUID actual
 	if [ "$(id -u)" != "0" ]; then
 		echo -e "\n${redColour}[!]${endColour} ${yellowColour}No tienes permisos suficientes...${endColour}"

@@ -68,6 +68,12 @@ function install() {
 	# Creación de un usuario para la ejecución del servicio siendo NO root
 	if ! id "$program_name" &>/dev/null; then
 		useradd -r -s /usr/sbin/nologin "$program_name"
+
+		# Comprobar que docker existe
+		if [ -n "$(grep '^docker:' /etc/group)" ]; then
+			# Agregar al usuario al grupo docker
+			sudo usermod -aG docker "$program_name"
+		fi
 	else
 		echo -e "${yellowColour}[+]${endColour} ${grayColour}El usuario${endColour} ${purpleColour}$program_name${endColour} ${grayColour}ya existe, omitiendo creación...${endpoints}"
 	fi

@@ -92,7 +92,7 @@ function install() {
 	systemctl daemon-reload
 
 	# Lanzamos el servicio
-	if [[ $q_flag == 0 ]] && systemctl is-active --quiet "$program_name.service"; then
+	if [[ $q_flag != 0 ]] && systemctl is-active --quiet "$program_name.service"; then
 		systemctl restart "$program_name.service"
 	else
 		systemctl start "$program_name.service"

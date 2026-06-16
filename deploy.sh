@@ -25,7 +25,7 @@ declare -r grayColour="\e[0;37m\033[1m"
 
 # Panel de ayuda
 function helpPannel() {
-	echo -e "[USAGE]: $0 [-c] [-i] [-u] [-h]"
+	echo -e "[USAGE]: $0 [-c] [-i] [-u] [-h] [-q]"
 	tput cnorm
 	exit 1
 }
@@ -46,6 +46,8 @@ function compile() {
 
 # Instalación
 function install() {
+	global q_flag
+
 	# Comprobación del UUID actual
 	if [ "$(id -u)" != "0" ]; then
 		echo -e "\n${redColour}[!]${endColour} ${yellowColour}No tienes permisos suficientes...${endColour}"
@@ -92,7 +94,7 @@ function install() {
 	systemctl daemon-reload
 
 	# Lanzamos el servicio
-	if systemctl is-active --quiet "$program_name.service"; then
+	if [[ $q_flag == 0 ]] && systemctl is-active --quiet "$program_name.service"; then
 		systemctl restart "$program_name.service"
 	else
 		systemctl start "$program_name.service"
@@ -174,8 +176,9 @@ function uninstall() {
 
 tput civis
 set -e
-declare -i c_flav=0; declare -i i_flag=0; declare -i u_flag=0; while getopts "ciuh" arg; do
+declare -i q_flag=0; declare -i i_flag=0; declare -i u_flag=0; while getopts "qciuh" arg; do
 	case $arg in
+		q) let q_flag += 1 ;;
 		c) compile;;
 		i) install;;
 		u) uninstall;;

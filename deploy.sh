@@ -176,7 +176,7 @@ tput civis
 set -e
 declare -i q_flag=0; declare -i i_flag=0; declare -i u_flag=0; while getopts "qciuh" arg; do
 	case $arg in
-		q) let q_flag += 1 ;;
+		q) q_flag += 1 ;;
 		c) compile;;
 		i) install;;
 		u) uninstall;;

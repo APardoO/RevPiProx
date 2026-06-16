@@ -75,7 +75,7 @@ function install() {
 			sudo usermod -aG docker "$program_name"
 		fi
 	else
-		echo -e "${yellowColour}[+]${endColour} ${grayColour}El usuario${endColour} ${purpleColour}$program_name${endColour} ${grayColour}ya existe, omitiendo creación...${endpoints}"
+		echo -e "${yellowColour}[+]${endColour} ${grayColour}El usuario${endColour} ${purpleColour}$program_name${endColour} ${grayColour}ya existe, omitiendo creación...${endColour}"
 	fi
 
 	# Asignación de permisos
@@ -92,7 +92,9 @@ function install() {
 	systemctl daemon-reload
 
 	# Lanzamos el servicio
-	if [[ $q_flag != 0 ]] && systemctl is-active --quiet "$program_name.service"; then
+	if [[ $q_flag -ne 0 ]]; then
+		:
+	elif systemctl is-active --quiet "$program_name.service"; then
 		systemctl restart "$program_name.service"
 	else
 		systemctl start "$program_name.service"
